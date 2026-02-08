@@ -16,7 +16,7 @@ function convertBackendTask(backendTask: BackendTask): Task {
 }
 
 // Update the base URL to match our backend API structure
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000/api';
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://alishba51-sameer-todo-backend.hf.space/api';
 
 class ApiClient {
   private async request<T>(url: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
