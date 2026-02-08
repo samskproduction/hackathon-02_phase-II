@@ -36,7 +36,7 @@ export function TaskForm({ task, onSubmit, onCancel }: TaskFormProps) {
     const taskData: Partial<Task> = {
       title: title.trim(),
       description: description.trim(),
-      dueDate: dueDate ? new Date(dueDate).toISOString() : undefined,
+      dueDate: dueDate ? new Date(dueDate) : undefined,
       priority,
     };
 

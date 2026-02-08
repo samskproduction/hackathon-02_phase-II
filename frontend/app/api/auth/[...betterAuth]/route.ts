@@ -1,16 +1,16 @@
-import { BetterAuthAdapter } from 'better-auth/adapter';
-import { DrizzleAdapter } from '@better-auth/drizzle-adapter';
-import { db } from '@/lib/db'; // You'll need to set up your database connection
+import { drizzleAdapter } from '@better-auth/drizzle-adapter';
+import { db } from '@/lib/db';
 import { betterAuth } from 'better-auth';
+import { toNextJsHandler } from 'better-auth/next-js';
 
-const adapter = DrizzleAdapter(db, {
-  provider: 'pg', // or 'mysql', 'sqlite' based on your database
-});
-
-export const { GET, POST } = betterAuth({
-  database: adapter,
+const auth = betterAuth({
+  database: drizzleAdapter(db, {
+    provider: 'pg',
+  }),
   secret: process.env.BETTER_AUTH_SECRET || 'fallback-secret-for-development',
   emailAndPassword: {
     enabled: true,
   },
 });
+
+export const { GET, POST } = toNextJsHandler(auth);
